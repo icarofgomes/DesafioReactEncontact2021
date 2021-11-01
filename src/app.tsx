@@ -1,9 +1,10 @@
 import React from "react";
+import { Main } from './components'
 
 export default function App() {
   return (
     <section>
-      <h1>Todos</h1>
+      <Main />
     </section>
   );
 }
