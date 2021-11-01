@@ -14,6 +14,12 @@ export default function Provider({ children }) {
     )))
   }
 
+  const editItem = (id, value) => {
+    setTasks(tasks.map((task) => (
+      task.id === id ? {...task, title: value} : task
+    )))
+  }
+
   const deleteItem = (id) => {
     setTasks(tasks.filter((task) => task.id !== id))
   }
@@ -28,7 +34,7 @@ export default function Provider({ children }) {
     fetchData();
   }, []);
 
-  const context = { tasks, handleClick, changeStatus, deleteItem }
+  const context = { tasks, handleClick, changeStatus, deleteItem, editItem }
   return(
     <TodoContext.Provider value={ context }>
       { children }
