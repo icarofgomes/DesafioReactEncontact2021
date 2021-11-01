@@ -20,6 +20,12 @@ export default function Provider({ children }) {
     )))
   }
 
+  const SelectAll = () => {
+    tasks.every((task) => task.isDone === true)
+    ? setTasks(tasks.map((task) => ({...task, isDone: false})))
+    : setTasks(tasks.map((task) => ({...task, isDone: true})))
+  }
+
   const deleteItem = (id) => {
     setTasks(tasks.filter((task) => task.id !== id))
   }
@@ -34,7 +40,7 @@ export default function Provider({ children }) {
     fetchData();
   }, []);
 
-  const context = { tasks, handleClick, changeStatus, deleteItem, editItem }
+  const context = { tasks, handleClick, changeStatus, deleteItem, editItem, SelectAll }
   return(
     <TodoContext.Provider value={ context }>
       { children }
