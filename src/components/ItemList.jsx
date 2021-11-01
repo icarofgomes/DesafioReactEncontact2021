@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import TodoContext from '../context/TodoContext';
 
 export default function ItemList({ task, changeStatus }) {
+  const { deleteItem } = useContext(TodoContext);
   const [showButton, setShowButton] = useState(false);
   return(
     <div
-      key={ task.id }
       onMouseOut={() => setShowButton(false)}
       onMouseOver={() => setShowButton(true)}
       >
@@ -15,7 +16,12 @@ export default function ItemList({ task, changeStatus }) {
         onChange={ changeStatus }
       />
       <input type="text" value={ task.title } disabled/>
-      <button style={{display: showButton ? 'inline-block' : 'none' }}>X</button>
+      <button
+        style={{display: showButton ? 'inline-block' : 'none' }}
+        onClick={() => deleteItem(task.id)}
+      >
+        X
+      </button>
     </div>
   )
 }

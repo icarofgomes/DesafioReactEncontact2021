@@ -14,7 +14,7 @@ export default function TasksField() {
     <section>
       {
         taskList.map((task) => (
-          <ItemList task={ task } changeStatus={ changeStatus }/>
+          <ItemList key={ task.id } task={ task } changeStatus={ changeStatus }/>
         ))
       }
     </section>

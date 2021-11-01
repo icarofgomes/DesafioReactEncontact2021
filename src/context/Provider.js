@@ -14,6 +14,10 @@ export default function Provider({ children }) {
     )))
   }
 
+  const deleteItem = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id))
+  }
+
   useEffect(() => {
     const API = 'http://my-json-server.typicode.com/EnkiGroup/DesafioReactEncontact2021/todos';
     async function fetchData() {
@@ -24,7 +28,7 @@ export default function Provider({ children }) {
     fetchData();
   }, []);
 
-  const context = { tasks, handleClick, changeStatus }
+  const context = { tasks, handleClick, changeStatus, deleteItem }
   return(
     <TodoContext.Provider value={ context }>
       { children }
