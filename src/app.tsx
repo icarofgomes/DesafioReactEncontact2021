@@ -1,10 +1,10 @@
 import React from "react";
-import { Main } from './components'
+import { Router } from './components'
 
 export default function App() {
   return (
     <section>
-      <Main />
+      <Router />
     </section>
   );
 }
