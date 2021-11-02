@@ -30,6 +30,10 @@ export default function Provider({ children }) {
     setTasks(tasks.filter((task) => task.id !== id))
   }
 
+  const clearCompleted = () => {
+    setTasks(tasks.filter((task) => task.isDone === false))  
+  }
+
   useEffect(() => {
     const API = 'http://my-json-server.typicode.com/EnkiGroup/DesafioReactEncontact2021/todos';
     async function fetchData() {
@@ -40,7 +44,7 @@ export default function Provider({ children }) {
     fetchData();
   }, []);
 
-  const context = { tasks, handleClick, changeStatus, deleteItem, editItem, SelectAll }
+  const context = { tasks, handleClick, changeStatus, deleteItem, editItem, SelectAll, clearCompleted }
   return(
     <TodoContext.Provider value={ context }>
       { children }
