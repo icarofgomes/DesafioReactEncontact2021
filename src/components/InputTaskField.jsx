@@ -9,11 +9,11 @@ const INITIAL_STATE = {
 
 export default function InputTaskField({ task = INITIAL_STATE }) {
   const [currentTask, setCurrentTask] = useState(task);
-  const { handleClick, tasks } = useContext(TodoContext);
+  const { addTask, tasks } = useContext(TodoContext);
 
   const handleChange = ({ target }) => {
     setCurrentTask({
-      id: `nt-${tasks.length + 1}`,
+      id: `nt${tasks.length + 1}${Math.round(Math.random()*100)}`,
       title: target.value,
       isDone: false,
     })
@@ -21,7 +21,7 @@ export default function InputTaskField({ task = INITIAL_STATE }) {
 
   const submitButton = (e) => {
     e.preventDefault();
-    handleClick(currentTask);
+    addTask(currentTask);
     setCurrentTask(INITIAL_STATE);
   }
 

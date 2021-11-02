@@ -4,8 +4,8 @@ import TodoContext from './TodoContext';
 export default function Provider({ children }) {
   const [tasks, setTasks] = useState([]);
 
-  const handleClick = (state) => {
-    setTasks([...tasks, state])
+  const addTask = (state) => {
+    setTasks([state, ...tasks])
   }
 
   const changeStatus = ({ target }) => {
@@ -44,7 +44,7 @@ export default function Provider({ children }) {
     fetchData();
   }, []);
 
-  const context = { tasks, handleClick, changeStatus, deleteItem, editItem, SelectAll, clearCompleted }
+  const context = { tasks, addTask, changeStatus, deleteItem, editItem, SelectAll, clearCompleted }
   return(
     <TodoContext.Provider value={ context }>
       { children }
