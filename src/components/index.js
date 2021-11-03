@@ -8,3 +8,4 @@ export { default as TasksLeft } from './TasksLeft';
 export { default as BottomMenu } from './BottomMenu';
 export { default as Filters } from './Filters';
 export { default as ClearCompleted } from './ClearCompleted';
+export { default as MainContent } from './MainContent';

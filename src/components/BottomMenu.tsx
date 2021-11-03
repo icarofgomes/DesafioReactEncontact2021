@@ -3,7 +3,7 @@ import { TasksLeft, Filters, ClearCompleted } from '.';
 
 export default function BottomMenu() {
   return(
-    <section>
+    <section className="flex justify-between">
       <TasksLeft />
       <Filters />
       <ClearCompleted />

@@ -1,10 +1,11 @@
 import React from "react";
-import { Router } from './components'
+import { Header, MainContent } from './components'
 
 export default function App() {
   return (
-    <section>
-      <Router />
-    </section>
+    <div className="flex flex-col">
+      <Header />
+      <MainContent />
+    </div>
   );
 }

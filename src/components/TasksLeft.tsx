@@ -29,7 +29,7 @@ export default function TasksLeft() {
   }
 
   return(
-    <section>
+    <section className="w-4/12 p-2 text-sm">
       { createField() }
     </section>
   )
