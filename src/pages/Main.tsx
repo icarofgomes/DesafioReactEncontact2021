@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputTaskField, TasksField, CheckAll, Header } from '../components';
+import { InputTaskField, TasksField, CheckAll, Header, BottomMenu } from '../components';
 
 export default function Main() {
   return(
@@ -8,6 +8,7 @@ export default function Main() {
       <CheckAll />
       <InputTaskField />
       <TasksField page="main"/>
+      <BottomMenu />
     </main>
   )
 }
