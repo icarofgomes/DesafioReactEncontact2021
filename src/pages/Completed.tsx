@@ -1,10 +1,10 @@
 import React from 'react';
 import { TasksField } from '../components';
 
-export default function Main() {
+export default function Completed() {
   return(
     <section>
-      <TasksField page="main"/>
+      <TasksField page="completed"/>
     </section>
   )
-}
+};

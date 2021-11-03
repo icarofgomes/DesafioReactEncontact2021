@@ -26,13 +26,18 @@ export default function InputTaskField({ task = INITIAL_STATE }) {
   }
 
   return (
-    <form onSubmit={ (e) => submitButton(e) }>
+    <form
+      className="w-full"
+      onSubmit={ (e) => submitButton(e) }
+      >
       <label htmlFor="input-task">
         <input
+          className="p-2 w-full rounded-lg"
           type="text"
           id="input-task"
           onChange={ handleChange }
           value={ currentTask.title }
+          placeholder="Adicione uma tarefa"
         />
       </label>
     </form>

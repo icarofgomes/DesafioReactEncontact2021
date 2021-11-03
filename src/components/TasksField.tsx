@@ -31,7 +31,7 @@ export default function TasksField({ page }: AppProps) {
   },[ tasks, page ])
 
   return(
-    <section>
+    <section className="p-2 w-full">
       {
         taskList.map((task: TaskType) => (
           <ItemList key={ task.id } task={ task } />

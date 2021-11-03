@@ -8,7 +8,6 @@ type AppProps = {
     isDone: boolean
   };
 };
-
 type KeyEvent = React.KeyboardEvent<HTMLInputElement>;
 type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
 
@@ -48,30 +47,39 @@ export default function ItemList({ task }: AppProps) {
       onMouseOut={() => setShowButton(false)}
       onMouseOver={() => setShowButton(true)}
       onDoubleClick={() => setEdit(true)}
+      className="flex justify-between"
       >
-      <input
-        type="checkbox"
-        id={ task.id }
-        checked={ task.isDone }
-        onChange={ changeStatus }
-      />
-      <label htmlFor={`task-title${task.id}`}>
-        <input
-          type="text"
-          value={ localValue }
-          disabled={!edit}
-          id={`task-title${task.id}`}
-          onChange={ handleChange }
-          onKeyDown={(e) => updateTitleKey(e)}
-          onBlur={(e) => updateTitleBlur(e)}
-          ref={editFocus}
-        />
-      </label>
+      <section>
+        <label htmlFor={ task.id }>
+          <input
+            className="h-5 w-5"
+            type="checkbox"
+            id={ task.id }
+            checked={ task.isDone }
+            onChange={ changeStatus }
+          />
+        </label>
+        <label htmlFor={`task-title${task.id}`}>
+          <input
+            type="text"
+            className="bg-white text-xl p-2 mx-1 w-5/6"
+            value={ localValue }
+            disabled={ !edit }
+            id={`task-title${ task.id }`}
+            onChange={ handleChange }
+            onKeyDown={ (e) => updateTitleKey(e) }
+            onBlur={ (e) => updateTitleBlur(e) }
+            ref={ editFocus }
+          />
+        </label>
+      </section>
       <button
         style={{display: showButton ? 'inline-block' : 'none' }}
+        className="bg-red-200 rounded-full h-6 w-6 px-1.5 mr-2 my-auto flex items-center
+          justify-center text-center text-white hover:bg-red-400"
         onClick={() => deleteItem(task.id)}
       >
-        X
+        x
       </button>
     </form>
   )
