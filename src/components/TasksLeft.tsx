@@ -1,12 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import TodoContext from '../context/TodoContext';
 
+type TaskType = {
+  id: string,
+  title: string,
+  isDone: boolean,
+};
+
+
 export default function TasksLeft() {
   const { tasks } = useContext(TodoContext);
   const [itemsLeft, setItemsLeft] = useState(0);
 
   useEffect(() => {
-    const counter = tasks.length - tasks.filter((task) => task.isDone === true).length;
+    const counter = tasks.length - tasks.filter((task: TaskType) => task.isDone === true).length;
     setItemsLeft(counter)
   }, [tasks]);
 

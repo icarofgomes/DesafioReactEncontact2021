@@ -1,30 +1,46 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
+import React, { useState, useContext, useRef, useLayoutEffect } from 'react';
 import TodoContext from '../context/TodoContext';
 
-export default function ItemList({ task, changeStatus }) {
-  const { deleteItem, editItem } = useContext(TodoContext);
+type AppProps = {
+  task: {
+    id: string,
+    title: string,
+    isDone: boolean
+  };
+};
+
+type KeyEvent = React.KeyboardEvent<HTMLInputElement>;
+type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
+
+export default function ItemList({ task }: AppProps) {
+  const { deleteItem, editItem, changeStatus } = useContext(TodoContext);
   const [showButton, setShowButton] = useState(false);
   const [localValue, setLocalValue] = useState(task.title)
   const [edit, setEdit] = useState(false);
-  const editFocus = useRef(null);
+  const editFocus = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    edit && editFocus.current.focus();
+  useLayoutEffect(() => {
+    if(edit && (null !== editFocus.current)) {
+      editFocus.current.focus();
+    }
   }, [edit])
 
-  const updateTitle = (e) => {
+  const updateTitleKey = (e: KeyEvent ) => {
     if(e.key === 'Enter') {
       editItem(task.id, localValue);
       setEdit(false);
     }
+  }
+
+  const updateTitleBlur = (e: ChangeEvent) => {
     if(e.type === 'blur') {
       editItem(task.id, localValue);
       setEdit(false);
     }
   }
 
-  const handleChange = ({target}) => {
-    setLocalValue(target.value)
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLocalValue(e.target.value)
   }
 
   return(
@@ -46,8 +62,8 @@ export default function ItemList({ task, changeStatus }) {
           disabled={!edit}
           id={`task-title${task.id}`}
           onChange={ handleChange }
-          onKeyDown={(e) => updateTitle(e)}
-          onBlur={(e) => updateTitle(e)}
+          onKeyDown={(e) => updateTitleKey(e)}
+          onBlur={(e) => updateTitleBlur(e)}
           ref={editFocus}
         />
       </label>
